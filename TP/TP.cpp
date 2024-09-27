@@ -58,6 +58,9 @@ int main()
 
 
             a->moverGuardian(tecla);
+            if (tecla == 97) {
+                a->plantarArbol(tecla);
+            }
 
         }
 

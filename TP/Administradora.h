@@ -196,7 +196,32 @@ public:
 
     //ARBOLES METODOS
 
+    void plantarArbol(int tecla) {
+        ///TODO: Validar que exista almenos 1 agua y una semilla para poder plantar el arbol
 
+        if (recursosGuardian >= 2 && cantidad_arboles < max_arboles) {
+            // Crear un árbol en la posición actual del guardián
+            int x_guardian = guardian->getX();
+            int y_guardian = guardian->getY();
+
+            arboles[cantidad_arboles] = new Arbol(x_guardian, y_guardian);
+            cantidad_arboles++;
+
+            // Reducir los recursos del guardián
+            recursosGuardian -= 2;
+
+            if (cantidad_basuras > 0) {
+                basuras[0]->borrar();
+                delete basuras[0];
+                for (int i = 1; i < cantidad_basuras; i++) {
+                    basuras[i - 1] = basuras[i];
+                }
+                cantidad_basuras--;
+            }
+
+
+        }
+    }
 
 
     void dibujarArboles() {
@@ -282,5 +307,7 @@ public:
             }
         }
     }
+
+
 
 };
