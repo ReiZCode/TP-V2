@@ -11,18 +11,20 @@ int main()
     Console::CursorVisible = false;
     Pantallas* p = new Pantallas();
     int cantidad_enemigos;
-    cantidad_enemigos = p->pantallaInicio();
-
-
-    system("cls");
-    Administradora* a = new Administradora(cantidad_enemigos);
-
     int cont_recursos = 0;
     int contador = 50;
     int vidas;
     int basuras;
     int recursos;
     int arboles;
+    int puntos;
+
+    cantidad_enemigos = p->pantallaInicio();
+
+
+    system("cls");
+    Administradora* a = new Administradora(cantidad_enemigos);
+
 
 
 
@@ -32,9 +34,9 @@ int main()
         recursos = a->mostrarRecursosJugador();
         basuras = a->actualizarBasura();
         vidas = a->actualizarVidas();
-
+        puntos = a->actualizarPuntos();
         //muestra la barra de resultados
-        p->pantallaResultados(vidas, basuras, recursos, arboles);
+        p->pantallaResultados(vidas, basuras, recursos, arboles, puntos);
 
 
         a->borraRecursos();
@@ -88,7 +90,16 @@ int main()
 
         }
 
-        if (basuras >= 14 && basuras > arboles) {
+        
+
+        if (cantidad_enemigos<=3 && basuras >= 14 && basuras > arboles) {
+            //Perdiste
+            system("cls");
+            p->pantallaPerdiste();
+            system("pause>0");
+        }
+
+        if (cantidad_enemigos > 3 && basuras >= 35 && basuras > arboles) {
             //Perdiste
             system("cls");
             p->pantallaPerdiste();
@@ -97,8 +108,9 @@ int main()
 
         if (arboles >= 3 && arboles > basuras) {
             system("cls");
-            p->pantallaGanaste();
+            p->pantallaGanaste(puntos);
             system("pause>0");
+
         }
 
         Sleep(50);

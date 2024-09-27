@@ -14,12 +14,13 @@ public:
 
 
     int pantallaInicio() {
-        int opcion;
+        
         int enemigos;
         //char* textotutorial = "\n\n\n\n\n\t\tEl juego trata de reforestar el entorno, restaurar la flora y fauna mientras se combate\t\t\n  contra la contaminacion. El personaje principal asume el papel de guardian del medio ambiente, tu objetivo es \n\trestaurar este ecosistema, plantando arboles, recolectando semillas y agua eliminando la basura\n\t\t\t\t\t que contamina el entorno\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t  Muevete con W A S D\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\tPulsa cualquier tecla para continuar...";
         //char* textocreditos = "\n\n\n\n\t1.Oscar Alatrista \n\n\t2.Leandro Arevalo\n\n\t3.Joseph Zamalloa";
         //char* textocontinuar="\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\tPulsa una tecla para continuar...";
         do {
+            int opcion;
             Console::SetCursorPosition(0, 5);
             cout << "\t\t\t\t\t\t\tBIENVENIDO A " << endl;
             Console::ForegroundColor = ConsoleColor::Green;
@@ -60,7 +61,7 @@ public:
                 << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
             cout << "\n\n\n";
             Console::ForegroundColor = ConsoleColor::DarkMagenta;
-            cout << "\t\t\t\t\t\t\############" << endl;
+            cout << "\t\t\t\t\t\t\##########################" << endl;
             Console::ForegroundColor = ConsoleColor::Magenta;
             cout << "\t\t\t\t\t\t\Ingrese una opcion: "; cin >> opcion;
 
@@ -74,7 +75,7 @@ public:
             }
             else if (opcion == 2) {
                 Console::ForegroundColor = ConsoleColor::White;
-                char* textotutorial = "\n\n\t\tEl juego trata de reforestar el entorno, restaurar la flora y fauna mientras se combate\t\t\n  contra la contaminacion. El personaje principal asume el papel de guardian del medio ambiente, tu objetivo es \n\trestaurar este ecosistema, plantando arboles, recolectando semillas y agua eliminando la basura\n\t\t\t\t\t que contamina el entorno\n\n\n\n\n\n  Muevete con las flechas direccionales, cuando tengas 2 recursos (agua, semilla) pulsa A para plantar un arbol!";
+                char* textotutorial = "\n\n\t\tEl juego trata de reforestar el entorno, restaurar la flora y fauna mientras se combate\t\t\n  contra la contaminacion. El personaje principal asume el papel de guardian del medio ambiente, tu objetivo es \n\trestaurar este ecosistema, plantando arboles, recolectando semillas y agua eliminando la basura\n\t\t\t\t\t que contamina el entorno\n\n\n\n\n\n  Muevete con las flechas direccionales, cuando tengas 2 recursos (agua, semilla) pulsa A para plantar un arbol!\n\t\trecolecta reciclables para ganar puntos, por cada 1000 puntos ganaras una vida";
                 system("cls");
                 while (*textotutorial) {
                     cout << *textotutorial++;
@@ -88,8 +89,10 @@ public:
                 cout << "\t\t\t\t\t\tAgua:      "; Console::ForegroundColor = ConsoleColor::Blue; cout << "~" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
                 cout << "\t\t\t\t\t\tBasura:    "; Console::ForegroundColor = ConsoleColor::White; cout << "%" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
                 cout << "\t\t\t\t\t\tEnemigo:   "; Console::ForegroundColor = ConsoleColor::Red; cout << "X" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
+                cout << "\t\t\t\t\t\tReciclaje: "; Console::ForegroundColor = ConsoleColor::Cyan; cout << "#" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
                 cout << "\t\t\t\t\t\tSemilla:   "; Console::ForegroundColor = ConsoleColor::DarkYellow; cout << "*" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
                 cout << "\t\t\t\t\t\tGuardian:  "; Console::ForegroundColor = ConsoleColor::Green; cout << "@" << endl;
+
                 Console::ForegroundColor = ConsoleColor::Gray;
                 cout << "\t\t\t\t\t\t-----------------" << endl;
                 while (*textocontinuar) {
@@ -101,7 +104,7 @@ public:
             }
             else if (opcion == 3) {
                 system("cls");
-                char* textocreditos = "\n\n\n\n\t1.Oscar Alatrista \n\n\t2.Leandro Arevalo\n\n\t3.Joseph Zamalloa";
+                char* textocreditos = "\n\n\n\n\t1.Oscar Alatrista \n\n\t2.Leandro Arevalo\n\n\t3.Joseph Zamalloa\n\n\t4.Renato Zegarra";
                 Console::ForegroundColor = ConsoleColor::White;
                 while (*textocreditos) {
                     cout << *textocreditos++;
@@ -129,7 +132,7 @@ public:
                 system("cls");
 
             }
-            else {
+            else{
 
                 Console::ForegroundColor = ConsoleColor::Red;
                 cout << "\a\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << endl;
@@ -152,7 +155,7 @@ public:
     }
 
 
-    void pantallaResultados(int vidas, int basuras, int recursos, int arboles) {
+    void pantallaResultados(int vidas, int basuras, int recursos, int arboles, int puntos) {
         Console::ForegroundColor = ConsoleColor::Green;
         Console::SetCursorPosition(0, 1);
         cout << " VIDAS : ( " << vidas << " )  ";
@@ -167,19 +170,38 @@ public:
         Console::ForegroundColor = ConsoleColor::White;
         cout << " |";
         Console::ForegroundColor = ConsoleColor::DarkRed;
-        cout << " CONTAMINACION: ( " << basuras << " )  " << endl;
+        cout << " CONTAMINACION: ( " << basuras << " )  ";
+        Console::ForegroundColor = ConsoleColor::White;
+        cout << " |";
+        Console::ForegroundColor = ConsoleColor::Cyan;
+        cout << " PUNTOS: ( " << puntos << " )  " << endl;
         Console::ForegroundColor = ConsoleColor::White;
         cout << "========================================================================================================================";
     }
 
-    void pantallaGanaste() {
+    void pantallaGanaste(int puntos) {
         Console::Clear();
         Console::ForegroundColor = ConsoleColor::DarkYellow;
-        cout << "\n\n\n\n\n\n\n\n\n\t\t\t\t_  _   _   _ _    _    _ _ _  __" << endl;
-        cout << "\t\t\t\t\\\\//  // \\\\  || ||    ||    || || ||\\ ||" << endl;
-        cout << "\t\t\t\t )/  ((   )) || ||    \\\\ /\\ // || ||\\\\||" << endl;
-        cout << "\t\t\t\t//    \\\\//    \\\\//     \\V/\\V/  || || \\||" << endl;
-        cout << "\t\t\t\t-      ---    - -       -  -   -- --  --" << endl;
+        cout << "\n\n\n\n\n\n\t\t\t\t\t_  _   _   _ _    _    _ _ _  __" << endl;
+        cout << "\t\t\t\t\t\\\\//  // \\\\  || ||    ||    || || ||\\ ||" << endl;
+        cout << "\t\t\t\t\t )/  ((   )) || ||    \\\\ /\\ // || ||\\\\||" << endl;
+        cout << "\t\t\t\t\t//    \\\\//    \\\\//     \\V/\\V/  || || \\||" << endl;
+        cout << "\t\t\t\t\t-      ---    - -       -  -   -- --  --" << endl;
+        Console::ForegroundColor = ConsoleColor::Yellow;
+        cout << "\n\n\t\t\t\t\t\tResultados de Juego" << endl;
+        Console::ForegroundColor = ConsoleColor::Gray;
+        cout << "\t\t\t\t\t\t-----------------" << endl; Console::ForegroundColor = ConsoleColor::DarkGray;
+        cout << "\t\t\t\t\t\tPuntaje: "; Console::ForegroundColor = ConsoleColor::Blue; cout << puntos << endl;
+        Console::ForegroundColor = ConsoleColor::Gray;
+        cout << "\t\t\t\t\t\t-----------------" << endl;
+        Console::ForegroundColor = ConsoleColor::Green;
+        cout << "\t\t\t _______  _______  _______  ______         ___  _______  _______ \n";
+        cout << "\t\t\t|       ||       ||       ||      |       |   ||       ||  _    |\n";
+        cout << "\t\t\t|    ___||   _   ||   _   ||  _    |      |   ||   _   || |_|   |\n";
+        cout << "\t\t\t|   | __ |  | |  ||  | |  || | |   |      |   ||  | |  ||       |\n";
+        cout << "\t\t\t|   ||  ||  |_|  ||  |_|  || |_|   |   ___|   ||  |_|  ||  _   | \n";
+        cout << "\t\t\t|   |_| ||       ||       ||       |  |       ||       || |_|   |\n";
+        cout << "\t\t\t|_______||_______||_______||______|   |_______||_______||_______|\n";
 
     }
 

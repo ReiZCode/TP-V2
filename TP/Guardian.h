@@ -5,7 +5,7 @@
 class Guardian : public Personaje {
 
 private:
-    int vidas;
+    int vidas, puntos;
 
 public:
     Guardian(int x_, int y_) {
@@ -14,6 +14,7 @@ public:
         dx = 0;
         dy = 0;
         vidas = 3;
+        puntos = 0;
 
 
     }
@@ -49,7 +50,9 @@ public:
 
     }
 
-
+    int getPuntos() { return puntos; }
     int getVidas() { return vidas; }
     void perderVidas() { vidas--; }
+    void ganarVidas() { vidas++; }
+    void ganarPuntos() { puntos += 100; }
 };

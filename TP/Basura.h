@@ -1,7 +1,7 @@
 #pragma once
 #include "Semilla.h"
 #include "Agua.h"
-
+#include "Reciclable.h"
 class Basura
 {
 private:

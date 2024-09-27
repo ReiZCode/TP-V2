@@ -135,6 +135,7 @@
     <ClInclude Include="Pantallas.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Reciclable.h" />
     <ClInclude Include="Recursos.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Semilla.h" />
@@ -155,6 +156,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="Reciclable.cpp" />
     <ClCompile Include="Recursos.cpp" />
     <ClCompile Include="Semilla.cpp" />
     <ClCompile Include="TP.cpp" />

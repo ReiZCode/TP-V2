@@ -8,13 +8,14 @@ private:
     Enemigo** enemigos;
     Basura** basuras;
     Agua** aguas;
+    Reciclable** reciclables;
     Semilla** semillas;
     Arbol** arboles;
 
     int cantidad_arboles;
     int max_arboles = 100;
     int cantidad_recursos = 0;
-    int max_recursos = 5;
+    int max_recursos = 8;
     int cantidad_enemigos;
     int cantidad_basuras;
     int capacidad_basuras;
@@ -39,11 +40,13 @@ public:
 
         aguas = new Agua * [max_recursos];
         semillas = new Semilla * [max_recursos];
+        reciclables = new Reciclable * [max_recursos];
 
         for (int i = 0; i < max_recursos; i++)
         {
             aguas[i] = nullptr;
             semillas[i] = nullptr;
+            reciclables[i] = nullptr;
 
         }
 
@@ -66,6 +69,10 @@ public:
 
     int actualizarVidas() {
         return guardian->getVidas();
+    }
+
+    int actualizarPuntos() {
+        return guardian->getPuntos();
     }
 
 
@@ -151,17 +158,19 @@ public:
 
 
         if (cantidad_recursos < max_recursos) {
-            int x_agua = rand() % 110 + 10;
-            int y_agua = rand() % 15 + 5;
+            int x_agua = rand() % 100 + 10;
+            int y_agua = rand() % 20 + 5;
 
-            int x_semilla = rand() % 110 + 10;
-            int y_semilla = rand() % 15 + 5;
+            int x_semilla = rand() % 100 + 10;
+            int y_semilla = rand() % 20 + 5;
 
-
+            int x_reciclables = rand() % 100 + 10;
+            int y_reciclables = rand() % 20 + 5;
 
 
             aguas[cantidad_recursos] = new Agua(x_agua, y_agua);
             semillas[cantidad_recursos] = new Semilla(x_semilla, y_semilla);
+            reciclables[cantidad_recursos] = new Reciclable(x_reciclables, y_reciclables);
 
             cantidad_recursos++;
 
@@ -176,6 +185,7 @@ public:
         {
             aguas[i]->dibujar();
             semillas[i]->dibujar();
+            reciclables[i]->dibujar();
         }
 
     }
@@ -185,6 +195,7 @@ public:
         {
             aguas[i]->borrar();
             semillas[i]->borrar();
+            reciclables[i]->borrar();
         }
 
     }
@@ -276,6 +287,10 @@ public:
                 int y3 = aguas[i]->getY();
 
 
+                int x4 = reciclables[i]->getX();
+                int y4 = reciclables[i]->getY();
+
+
 
                 if (x1 == x2 && y1 == y2) {
                     recursosGuardian++;
@@ -301,6 +316,32 @@ public:
                     int y_nueva = rand() % 25 + 5;
                     aguas[i] = new Agua(x_nueva, y_nueva);
                 }
+
+                if (x4 == x2 && y4 == y2) {
+                    guardian->ganarPuntos();
+
+                    reciclables[i]->borrar();
+                    delete reciclables[i];
+
+
+                    int x_nueva = rand() % 110 + 10;
+                    int y_nueva = rand() % 25 + 5;
+                    reciclables[i] = new Reciclable(x_nueva, y_nueva);
+
+                    if (guardian->getPuntos() % 1000 == 0) {
+
+                        guardian->ganarVidas();
+
+                    }
+
+
+
+
+
+
+
+                }
+
 
 
 
